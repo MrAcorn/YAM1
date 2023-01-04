@@ -18,13 +18,16 @@ public class CameraHolder : MonoBehaviour
     public Camera cam;
     public CinemachineFreeLook normalCam;
     public Vector2 trasparentClamp;
-    public Vector2 []setOrbs = new Vector2[3];
+    public Vector2[] setOrbs = new Vector2[3];
     public float zoomScale;
     public float zoomSensy;
     public float minZoom = 0.2f;
     public float minTrans = 0.05f;
     public Material mat;
-    private Color colorHold;
+    [SerializeField] private float targetZoom;
+    public float scrollSpeed;
+    public float scrollSpeed1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +39,8 @@ public class CameraHolder : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
         //
-        
-        
+
+        targetZoom = zoomScale;
     }
 
     // Update is called once per frame
@@ -60,25 +63,27 @@ public class CameraHolder : MonoBehaviour
         {
             a = Mathf.Clamp(a, minTrans, 1);
         }
-        print(dist + " " + a);
+
+        Color colorHold;
         colorHold = mat.color;
         colorHold.a = a;
         mat.color = colorHold;
     }
     void Zoom()
     {
-        
-        zoomScale = Mathf.Clamp((zoomScale + (zoomSensy * inputC.scroll * Time.deltaTime)),minZoom,1);
-        
+
+
+
+        targetZoom += (zoomSensy * Input.mouseScrollDelta.y * Time.deltaTime);
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, 1);
+        zoomScale += Mathf.Pow(targetZoom - zoomScale, 2) * (targetZoom - zoomScale > 0 ? 1 : -1);
+        zoomScale = Mathf.Clamp(zoomScale, minZoom, 1);
+
         normalCam.m_Orbits[0] = new CinemachineFreeLook.Orbit(setOrbs[0].x * zoomScale, setOrbs[0].y * zoomScale);
         normalCam.m_Orbits[1] = new CinemachineFreeLook.Orbit(setOrbs[1].x * zoomScale, setOrbs[1].y * zoomScale);
         normalCam.m_Orbits[2] = new CinemachineFreeLook.Orbit(setOrbs[2].x * zoomScale, setOrbs[2].y * zoomScale);
 
 
-        
-    }
-    void FunnyColor()
-    {
         
     }
 

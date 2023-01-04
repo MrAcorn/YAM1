@@ -1130,6 +1130,9 @@ MonoBehaviour:
   minZoom: 0.1
   minTrans: 0.1
   mat: {fileID: 2100000, guid: dc2dd560b03740f40b0833b3c808fca3, type: 2}
+  targetZoom: 0
+  scrollSpeed: 1
+  scrollSpeed1: 0
 --- !u!1 &1395609072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,7 +1307,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682494392}
-  m_LocalRotation: {x: 0.053568155, y: -0.000000017181677, z: 9.2171415e-10, w: 0.9985642}
+  m_LocalRotation: {x: 0.053568155, y: 0.000000017181677, z: -9.2171415e-10, w: 0.9985642}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
