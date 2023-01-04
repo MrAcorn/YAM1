@@ -16,11 +16,11 @@ public class Stats : MonoBehaviour
     public float maxEnergy;
     public float setMaxEnergy;
     public float energyRegen;
-    public float sheild;
-    public float stunSheild;
-    public float stunSheildRegen;
-    public float maxStunSheild;
-    public float setMaxStunSheild;
+    public float Shield;
+    public float stunShield;
+    public float stunShieldRegen;
+    public float maxStunShield;
+    public float setMaxStunShield;
     public float ultCharge;
     public float maxUltCharge;
     public float coolDownReduction;
@@ -60,8 +60,8 @@ public class Stats : MonoBehaviour
         maxHeath = setMaxHeath;
         energy = setMaxEnergy;
         maxEnergy = setMaxEnergy;
-        stunSheild = setMaxStunSheild;
-        maxStunSheild = setMaxStunSheild;
+        stunShield = setMaxStunShield;
+        maxStunShield = setMaxStunShield;
         speed = setSpeed;
         sprintSpeed = setSprintSpeed;
         heightCostModifier = setHeightCostModifier;
@@ -78,9 +78,9 @@ public class Stats : MonoBehaviour
         {
             energy = maxEnergy;
         }
-        if(stunSheild > maxStunSheild)
+        if(stunShield > maxStunShield)
         {
-            stunSheild = maxStunSheild;
+            stunShield = maxStunShield;
         }
     }
 

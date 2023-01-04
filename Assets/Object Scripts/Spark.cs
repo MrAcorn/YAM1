@@ -77,7 +77,7 @@ public class Spark : MonoBehaviour
     }
     public void ZoneAblility()
     {
-        stats.sheild += (stats.maxHeath * modif[0]);
+        stats.Shield += (stats.maxHeath * modif[0]);
         Invoke("EndZone", modif[1]);
         coolDown = setCoolDown * (cdOn ? 1 : 0);
 
@@ -89,7 +89,7 @@ public class Spark : MonoBehaviour
     public void BruiserAblility()
     {
         modif[2] = ((1 - (stats.heath / stats.maxHeath)) * stats.maxHeath * modif[0]);
-        stats.sheild += modif[2];
+        stats.Shield += modif[2];
         Invoke("EndBruiser", modif[1]);
         coolDown = setCoolDown * (cdOn ? 1 : 0);
     }
@@ -117,11 +117,11 @@ public class Spark : MonoBehaviour
     }
     private void EndZone()
     {
-        stats.sheild -= (stats.maxHeath * modif[0]);
+        stats.Shield -= (stats.maxHeath * modif[0]);
     }
     private void EndBruiser()
     {
-        stats.sheild -= modif[2];
+        stats.Shield -= modif[2];
     }
     private void EndSpecialist()
     {

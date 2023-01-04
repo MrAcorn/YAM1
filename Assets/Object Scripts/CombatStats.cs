@@ -55,9 +55,9 @@ public class CombatStats : MonoBehaviour
     }
     void StunSheildRegenerating()
     {
-        if (stats.stunSheild < stats.maxStunSheild && stunSheildRegenOn)
+        if (stats.stunShield < stats.maxStunShield && stunSheildRegenOn)
         {
-            stats.stunSheild += stats.stunSheildRegen;
+            stats.stunShield += stats.stunShieldRegen;
         }
     }
 }
