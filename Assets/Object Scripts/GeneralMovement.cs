@@ -107,7 +107,6 @@ public class GeneralMovement : MonoBehaviour
         if (Mathf.Abs(rb.velocity.y) <= 0.01f)
         {
             grounded = true;
-            caller.Call("Jump Restset", 2);
             currentJumps = stats.maxJumps;
         }
         else

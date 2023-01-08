@@ -41,7 +41,7 @@ public class Sprint : MonoBehaviour
         if (inputC.sprint && !trigger && stats.energy > stats.energyRegen)
         {
             stats.energy -= stats.sprintCost * stats.heightCostModifier;
-            caller.Call("Sprinting", 2);
+            caller.Call(this.ToString(),"Sprinting", 2);
             sprinting = true;
             stats.speed += stats.sprintSpeed;
         }
@@ -70,7 +70,7 @@ public class Sprint : MonoBehaviour
                     if (rb.velocity.y < 0.01f)
                     {
 
-                        caller.Call("Sprinting UP", 2);
+                        caller.Call(this.ToString(),"Sprinting UP", 2);
                         stats.energy -= stats.sprintActionCost;
                         rb.AddForce(new Vector3(0, stats.jumpHeight + (Mathf.Clamp(rb.velocity.y, rb.velocity.y, 0) * -stats.jumpConstitution), 0), ForceMode.Impulse);
                         stats.speed += stats.boostConstiution;
@@ -85,7 +85,7 @@ public class Sprint : MonoBehaviour
                     if (rb.velocity.y > 0.01f)
                     {
 
-                        caller.Call("Sprinting DOWN", 2);
+                        caller.Call(this.ToString(), "Sprinting DOWN", 2);
                         stats.energy -= stats.sprintActionCost;
                         rb.AddForce(new Vector3(0, -(stats.jumpHeight * 2) + (Mathf.Clamp(rb.velocity.y, 0, rb.velocity.y) * -stats.jumpConstitution), 0), ForceMode.Impulse);
                         stats.speed += stats.boostConstiution;
@@ -103,7 +103,7 @@ public class Sprint : MonoBehaviour
         if ((!inputC.sprint || stats.energy <= 0) && sprinting)
         {
             stats.speed -= stats.sprintSpeed;
-            caller.Call("Stop Sprinting", 2);
+            caller.Call(this.ToString(), "Stop Sprinting", 2);
             sprinting = false;
         }
 

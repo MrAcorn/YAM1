@@ -12,6 +12,9 @@ public class Stats : MonoBehaviour
     public float maxHeath;
     public float setMaxHeath;
     public float heathRegen;
+    public float knockDownThreshhold;
+    public float knockDownSpeed;
+    public float knockDownTime;
     public float energy;
     public float maxEnergy;
     public float setMaxEnergy;
@@ -39,16 +42,18 @@ public class Stats : MonoBehaviour
     public float level;
     public float levelPoints;
     public float experince;
+    public float deathTimer;
     public float maxJumps;
     public float jumpHeight;
     public float jumpCD;
     public float jumpConstitution;
     public float boostConstiution;
+    public List<float> modif = new List<float>(4);
     // (in order) untaged, fire, water, wood, metal, earth, celestial
-    public float[] defence = new float[7];
-    public float[] setDefence = new float[7];
-    public float[] attack = new float[7];
-    public float[] setAttack = new float[7];
+    public List<float> defence = new List<float>(7);
+    public List<float> setDefence = new List<float>(7);
+    public List<float> attack = new List<float>(7);
+    public List<float> setAttack = new List<float>(7);
 
     // Start is called before the first frame update
     void Start()

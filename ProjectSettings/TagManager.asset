@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - camBlock
+  - NeutralNPC
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - enviro
   - Water
   - UI
-  - 
-  - 
+  - NuetralNPC
+  - Down
   - 
   - 
   - 

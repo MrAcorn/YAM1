@@ -55,7 +55,7 @@ public class Spark : MonoBehaviour
     }
     public void JuggernautAblility()
     {
-        for (int i = 0; i < stats.defence.Length; i++)
+        for (int i = 0; i < stats.defence.Count; i++)
         {
             stats.defence[i] += modif[0];
         }
@@ -102,7 +102,7 @@ public class Spark : MonoBehaviour
 
     private void EndJuggernaut()
     {
-        for (int i = 0; i < stats.defence.Length; i++)
+        for (int i = 0; i < stats.defence.Count; i++)
         {
             stats.defence[i] -= modif[0];
         }

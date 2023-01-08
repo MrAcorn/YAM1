@@ -18,6 +18,8 @@ public class CombatStats : MonoBehaviour
     public bool heathRegenOn;
     public bool energyRegenOn;
     public bool stunSheildRegenOn;
+    private float timer;
+    
     void Start()
     {
         caller = GetComponent<Caller>();
@@ -36,26 +38,37 @@ public class CombatStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
+        if(timer > 4)
+        {
+            inCombat = false;
+        }
     }
+
+    public void InCombat()
+    {
+        timer = 0;
+        inCombat = true;
+    }
+
 
     void HeathRegenerating()
     {
-        if (stats.heath < stats.maxHeath && heathRegenOn)
+        if (stats.heath < stats.maxHeath && heathRegenOn && !inCombat)
         {
             stats.heath += stats.heathRegen;
         }
     }
     void EnergyRegenerating()
     {
-        if (stats.energy < stats.maxEnergy && energyRegenOn)
+        if (stats.energy < stats.maxEnergy && energyRegenOn && !inCombat)
         {
             stats.energy += stats.energyRegen;
         }
     }
     void StunSheildRegenerating()
     {
-        if (stats.stunShield < stats.maxStunShield && stunSheildRegenOn)
+        if (stats.stunShield < stats.maxStunShield && stunSheildRegenOn && !inCombat)
         {
             stats.stunShield += stats.stunShieldRegen;
         }
