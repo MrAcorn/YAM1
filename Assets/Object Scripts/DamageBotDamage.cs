@@ -12,6 +12,7 @@ public class DamageBotDamage : MonoBehaviour
     private Rigidbody rb;
     private GeneralMovement gm;
     private CombatStats combatStats;
+    private ElementalManager eM;
 
     public float damage = 10;
     public int element = 0;
@@ -26,11 +27,12 @@ public class DamageBotDamage : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
         combatStats = GetComponent<CombatStats>();
-
+        eM = GetComponent<ElementalManager>();
         //
-
+        int element = Mathf.RoundToInt(Random.Range(0, 7));
+        eM.ApplyElement(element, gameObject) ;
         combatStats.InCombat();
-        stats.heath -= damage;
+        stats.heath -= damage * (1 - stats.defence[element]/100);
         Destroy(this);
     }
 

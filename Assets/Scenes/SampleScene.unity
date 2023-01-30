@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 1390954109}
   - component: {fileID: 1390954110}
   - component: {fileID: 1390954111}
+  - component: {fileID: 1390954112}
   m_Layer: 0
   m_Name: Test Obj
   m_TagString: Player
@@ -1111,6 +1112,20 @@ MonoBehaviour:
   dead: 0
   knockedDownCounter: 3
   respwanPoint: {fileID: 2021551787}
+--- !u!114 &1390954112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390954095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba72fd4e09d0f964ca91000de957418a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementQueue: 
+  elementQueueName: []
 --- !u!1 &1395609072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682494392}
-  m_LocalRotation: {x: 0.053568155, y: -0.000000017181677, z: 9.2171415e-10, w: 0.9985642}
+  m_LocalRotation: {x: 0.053568155, y: 0.000000017181677, z: -9.2171415e-10, w: 0.9985642}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

@@ -44,6 +44,7 @@ public class KnockDownRespawn : MonoBehaviour
     {
         if (healthhold != stats.heath)
         {
+            
             damageTaken += Mathf.Clamp((healthhold - stats.heath), 0, Mathf.Infinity);
             healthhold = stats.heath;
             if (damageTaken >= stats.knockDownThreshhold)
@@ -102,6 +103,7 @@ public class KnockDownRespawn : MonoBehaviour
 
     public void Live()
     {
+        damageTaken = 0;
         caller.Call(this.ToString(), gameObject.name + " Is Alive!", 3);
         dead = false;
         transform.position = respwanPoint.position;
