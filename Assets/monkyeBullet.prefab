@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 5980092233071144523}
   - component: {fileID: 5980092233071144522}
   - component: {fileID: 5980092233071144521}
-  - component: {fileID: 5980092233071144520}
   - component: {fileID: 7618573535154558314}
+  - component: {fileID: -1051643264009499801}
+  - component: {fileID: 1593625872288999787}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: monkyeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5980092233071144527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.45, y: 1.4, z: 1.277}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4864,18 +4865,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5980092233071144520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5980092233071144527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde3632040bf9434cb0ffcb8756fcf75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7618573535154558314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4889,3 +4878,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   announceSelf: 0
+--- !u!114 &-1051643264009499801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5980092233071144527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9b038dc7fc5c4ca7d215166977a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageable: 0
+  playerCharater: 0
+  npc: 0
+  neutral: 0
+  terrain: 0
+  bullet: 1
+  others: []
+--- !u!114 &1593625872288999787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5980092233071144527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2790bedaa27f6b4f91b19280a8002e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 4
+  origName: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}

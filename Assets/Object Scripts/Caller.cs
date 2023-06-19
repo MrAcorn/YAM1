@@ -22,7 +22,9 @@ public class Caller : MonoBehaviour
     {
         
     }
-
+    /// <summary>
+    ///gameObject.name for source | what you wana say | Mute(0), All(1), Abli(2), Dev(3)
+    /// </summary>
     public void Call(string sourse, string message, int priority)
     {
 

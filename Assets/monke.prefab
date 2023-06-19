@@ -13,10 +13,12 @@ GameObject:
   - component: {fileID: 6236726239577321588}
   - component: {fileID: 4705374137396770405}
   - component: {fileID: 4705374137396770410}
-  - component: {fileID: 4705374137396770413}
   - component: {fileID: 4705374137396770412}
   - component: {fileID: 4705374137396770415}
+  - component: {fileID: 4705374137396770413}
   - component: {fileID: 4705374137396770411}
+  - component: {fileID: 934488714}
+  - component: {fileID: 5159228670957924553}
   m_Layer: 6
   m_Name: monke
   m_TagString: NeutralNPC
@@ -116,33 +118,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.027343763, y: 0.01703126, z: 0.01968751}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4705374137396770413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5588317363003101601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec4fccd1e5dcb4458ac38314f57d411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stun: 0
-  slow: 0
-  silence: 0
-  root: 0
-  disarm: 0
-  grounded: 0
-  cripple: 0
-  invinciblity: 0
-  statBuff: 0
-  sheilded: 0
-  unstoppable: 0
-  immunized: 0
-  wiffCancel: 0
-  knockDown: 0
-  stasis: 0
 --- !u!114 &4705374137396770412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +201,7 @@ MonoBehaviour:
   - 0
   - 0
   attack:
-  - 0
+  - 10
   - 0
   - 0
   - 0
@@ -241,6 +216,33 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+--- !u!114 &4705374137396770413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5588317363003101601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec4fccd1e5dcb4458ac38314f57d411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stun: 0
+  slow: 0
+  silence: 0
+  root: 0
+  disarm: 0
+  grounded: 0
+  cripple: 0
+  invinciblity: 0
+  statBuff: 0
+  sheilded: 0
+  unstoppable: 0
+  immunized: 0
+  wiffCancel: 0
+  knockDown: 0
+  stasis: 0
 --- !u!114 &4705374137396770411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +258,36 @@ MonoBehaviour:
   bullet: {fileID: 5980092233071144527, guid: a3e57d6bfa665f246b66b005948366e6, type: 3}
   timer: 0
   aimOffset: {x: 0, y: 180, z: 0}
+--- !u!114 &934488714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5588317363003101601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9b038dc7fc5c4ca7d215166977a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageable: 1
+  playerCharater: 0
+  npc: 1
+  neutral: 1
+  terrain: 0
+  bullet: 0
+  others: []
+--- !u!114 &5159228670957924553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5588317363003101601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba72fd4e09d0f964ca91000de957418a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementQueue: 
+  elementQueueName: []

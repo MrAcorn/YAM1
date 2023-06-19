@@ -23,7 +23,7 @@ public class KnockDownRespawn : MonoBehaviour
     public int knockedDownCounter = 3;
     public Transform respwanPoint;
     private int layerHold;
-
+    public bool knockdownable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +42,7 @@ public class KnockDownRespawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthhold != stats.heath)
+        if (healthhold != stats.heath && knockdownable)
         {
             
             damageTaken += Mathf.Clamp((healthhold - stats.heath), 0, Mathf.Infinity);
@@ -53,7 +53,7 @@ public class KnockDownRespawn : MonoBehaviour
             }
         }
         
-        if(stats.heath <= 0)
+        if(stats.heath <= 0 && !dead)
         {
             Death();
         }   
@@ -90,8 +90,10 @@ public class KnockDownRespawn : MonoBehaviour
         caller.Call(this.ToString(), gameObject.name + " Is Dead!", 3);
         if (stats.heath <= 0)
         {
+            rb.useGravity = false;
             transform.position = respwanPoint.position;
-            inputC.enabled = false;
+            if(inputC != null)
+                inputC.enabled = false;
             col.enabled = false;
             meshR.enabled = false;
             dead = true;
@@ -103,12 +105,14 @@ public class KnockDownRespawn : MonoBehaviour
 
     public void Live()
     {
+        rb.useGravity = true;
         damageTaken = 0;
         caller.Call(this.ToString(), gameObject.name + " Is Alive!", 3);
         dead = false;
         transform.position = respwanPoint.position;
         col.enabled = true;
-        inputC.enabled = true;
+        if (inputC != null)
+            inputC.enabled = true;
         meshR.enabled = true;
         rb.velocity = Vector3.zero;
         stats.heath = stats.setMaxHeath;

@@ -13,10 +13,14 @@ public class CameraHolder : MonoBehaviour
     private Rigidbody rb;
     private GeneralMovement gm;
     private CombatStats combatStats;
+    private float cPSpeed;
+    private Vector3 prevPos;
+    [SerializeField]  private bool playerMoving;
 
     //
     public Camera cam;
     public CinemachineFreeLook normalCam;
+    public cam2 normalCam2;
     public Vector2 trasparentClamp;
     public Vector2[] setOrbs = new Vector2[3];
     public float zoomScale;
@@ -27,6 +31,8 @@ public class CameraHolder : MonoBehaviour
     [SerializeField] private float targetZoom;
     public float scrollSpeed;
     public float scrollSpeed1;
+    [SerializeField] private Transform realLookPoint;
+    [SerializeField] private Transform childLookPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -38,16 +44,22 @@ public class CameraHolder : MonoBehaviour
         ccCounterPlay = GetComponent<CCCounterPlay>();
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
-        //
-
+        // created my own point did not work for some reason
+        realLookPoint = new GameObject("realLookP").GetComponent<Transform>();
+        normalCam.LookAt = realLookPoint;
+        print(realLookPoint.position);
         targetZoom = zoomScale;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Zoom();
         Transparancy();
+        StopLook();
+        PlayerMovingCheck();
+        CameraPoint();
     }
 
     void Transparancy()
@@ -69,6 +81,20 @@ public class CameraHolder : MonoBehaviour
         colorHold.a = a;
         mat.color = colorHold;
     }
+    void StopLook()
+    {
+        if (inputC.rightC)
+        {
+            normalCam.enabled = false;
+            normalCam2.enabled = true;
+        }
+        else
+        {
+            normalCam.enabled = true;
+            normalCam2.enabled = false;
+        }
+
+    }
     void Zoom()
     {
 
@@ -86,5 +112,30 @@ public class CameraHolder : MonoBehaviour
 
         
     }
+    void CameraPoint()
+    {
+        float distance = Vector3.Distance(realLookPoint.position, childLookPoint.position);
 
+       if(distance > 0.01f && playerMoving)
+        {
+            cPSpeed += 0.001f;
+            realLookPoint.position = Vector3.MoveTowards(realLookPoint.position, childLookPoint.position, ( cPSpeed * Mathf.Pow(distance,2)) );
+        }
+        else
+        {
+            cPSpeed = 0;
+        }
+    }
+    void PlayerMovingCheck()
+    {
+        if(prevPos != transform.position)
+        {
+            playerMoving = true;
+        }
+        else
+        {
+            playerMoving = false;
+        }
+        prevPos = transform.position;
+    }
 }

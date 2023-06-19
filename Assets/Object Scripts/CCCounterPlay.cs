@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CCCounterPlay : MonoBehaviour
+public class CCCounterPlay : CCStatus
 {
     //Higer Up Scripts
     private Caller caller;
