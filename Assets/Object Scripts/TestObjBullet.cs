@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicObjBullet : BasicDamageBullet
+public class TestObjBullet : BasicDamageBullet
 {
     public Vector3 castPos;
     public float range;
@@ -42,7 +42,7 @@ public class BasicObjBullet : BasicDamageBullet
 
         if (other.gameObject != origName && oTags != null &&  oTags.damageable )
         {
-            BasicDamage damageInstance = other.gameObject.AddComponent<BasicDamage>();
+            BasicDamage damageInstance = other.gameObject.AddComponent<TestDamage>();
             damageInstance.AssginDamage(bulDamage, 0, this.gameObject);
             ColiReport(other.gameObject);
         }

@@ -8,7 +8,6 @@ public class CombatStats : MonoBehaviour
     private InputCollecter inputC;
     private Stats stats;
     private CCStatus ccStatus;
-    private CCCounterPlay ccCounterPlay;
     private Rigidbody rb;
     private GeneralMovement gm;
     
@@ -26,7 +25,6 @@ public class CombatStats : MonoBehaviour
         inputC = GetComponent<InputCollecter>();
         stats = GetComponent<Stats>();
         ccStatus = GetComponent<CCStatus>();
-        ccCounterPlay = GetComponent<CCCounterPlay>();
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
 

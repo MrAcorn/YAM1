@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6827266809262165081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dca4ed985d9867d4cbc232222989f1b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 466cbb3fbb99552419a08130a297eabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   call: {fileID: 0}
@@ -117,8 +117,8 @@ MonoBehaviour:
   bulDamage: 10
   bulElement: 0
   castPos: {x: 0, y: 0, z: 0}
-  range: 50
-  movSpeed: 10
+  range: 40
+  movSpeed: 15
 --- !u!114 &6827266809262165031
 MonoBehaviour:
   m_ObjectHideFlags: 0

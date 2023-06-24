@@ -725,6 +725,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5588317363003101601, guid: 5175e40610ce9bc4f8d4b24c52bba0cf, type: 3}
   m_PrefabInstance: {fileID: 4705374137922544845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &934488714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934488713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd030d9e99f9e647ac26da6035af2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castable: 0
+  cooldown: 0
+  setCooldown: 1
+  input: 0
+  bullet: {fileID: 5980092233071144527, guid: a3e57d6bfa665f246b66b005948366e6, type: 3}
+  aimOffset: {x: 180, y: 0, z: 0}
 --- !u!4 &934488723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5099870985235122971, guid: 5175e40610ce9bc4f8d4b24c52bba0cf, type: 3}
@@ -1234,19 +1252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fbe08ba052c7f49abd85c5182a853c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 0}
-  caller: {fileID: 0}
-  stats: {fileID: 0}
-  input: 9
-  Name: 
   castable: 0
   cooldown: 0
   setCooldown: 0.5
-  cam: {fileID: 586666229}
+  input: 9
   aimR: {fileID: 586666231}
   aimOffset: 0
   bullet: {fileID: 6827266809262165081, guid: 6079ad97212bc2d4bb426b53d1544b2a, type: 3}
-  abilityTags: []
 --- !u!54 &1390954104
 Rigidbody:
   m_ObjectHideFlags: 0

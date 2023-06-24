@@ -9,7 +9,6 @@ public class GeneralMovement : MonoBehaviour
     private InputCollecter inputC;
     private Stats stats;
     private CCStatus ccStatus;
-    private CCCounterPlay ccCounterPlay;
     private Rigidbody rb;
     [SerializeField] private Camera cam;
     //Hold condition
@@ -25,7 +24,6 @@ public class GeneralMovement : MonoBehaviour
         inputC = GetComponent<InputCollecter>();
         stats = GetComponent<Stats>();
         ccStatus = GetComponent<CCStatus>();
-        ccCounterPlay = GetComponent<CCCounterPlay>();
         rb = GetComponent<Rigidbody>();
 
         canJump = true;

@@ -8,7 +8,6 @@ public class KnockDownRespawn : MonoBehaviour
     private InputCollecter inputC;
     private Stats stats;
     private CCStatus ccStatus;
-    private CCCounterPlay ccCounterPlay;
     private Rigidbody rb;
     private GeneralMovement gm;
     private CombatStats combatStats;
@@ -31,7 +30,6 @@ public class KnockDownRespawn : MonoBehaviour
         inputC = GetComponent<InputCollecter>();
         stats = GetComponent<Stats>();
         ccStatus = GetComponent<CCStatus>();
-        ccCounterPlay = GetComponent<CCCounterPlay>();
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
         combatStats = GetComponent<CombatStats>();

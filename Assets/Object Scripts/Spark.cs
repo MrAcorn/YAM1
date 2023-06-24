@@ -8,7 +8,6 @@ public class Spark : MonoBehaviour
     private InputCollecter inputC;
     private Stats stats;
     private CCStatus ccStatus;
-    private CCCounterPlay ccCounterPlay;
     private Rigidbody rb;
     private GeneralMovement gm;
     private CombatStats combatStats;
@@ -28,7 +27,6 @@ public class Spark : MonoBehaviour
         inputC = GetComponent<InputCollecter>();
         stats = GetComponent<Stats>();
         ccStatus = GetComponent<CCStatus>();
-        ccCounterPlay = GetComponent<CCCounterPlay>();
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
 
@@ -65,13 +63,13 @@ public class Spark : MonoBehaviour
     }
     public void MageAblility()
     {
-        ccStatus.immunized = true;
+        //ccStatus.immunized = true;
         Invoke("EndMage", modif[0]);
         coolDown = setCoolDown * (cdOn ? 1 : 0);
     }
     public void DiverAblility()
     {
-        ccStatus.NegCleanse();
+        //ccStatus.NegCleanse();
         Invoke("EndDiver", modif[0]);
         coolDown = setCoolDown * (cdOn ? 1 : 0);
     }
@@ -109,11 +107,11 @@ public class Spark : MonoBehaviour
     }
     private void EndMage()
     {
-        ccStatus.immunized = false;
+        //ccStatus.immunized = false;
     }
     private void EndDiiver()
     {
-        ccStatus.NegCleanse();
+        //ccStatus.NegCleanse();
     }
     private void EndZone()
     {

@@ -32,9 +32,5 @@ public class BasicDamage : MonoBehaviour
         stats.heath -= damage * (1 - stats.defence[element] / 100);
         Destroy(this);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

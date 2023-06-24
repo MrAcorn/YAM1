@@ -2,31 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CCCounterPlay : CCStatus
+public class DamageBot : BaseCharater
 {
-    //Higer Up Scripts
-    private Caller caller;
     private InputCollecter inputC;
-    private Stats stats;
     private CCStatus ccStatus;
-    //Hold condition
-    public bool isSprinting;
-    public bool abilityCast;
-    public bool weaponCast;
-    public bool movementCast;
-
+    private Rigidbody rb;
+    private GeneralMovement gm;
+    
     // Start is called before the first frame update
     void Start()
     {
         caller = GetComponent<Caller>();
-        inputC = GetComponent<InputCollecter>();
         stats = GetComponent<Stats>();
         ccStatus = GetComponent<CCStatus>();
+        rb = GetComponent<Rigidbody>();
+        combatStats = GetComponent<CombatStats>();
+        knockDR = GetComponent<KnockDownRespawn>();
+
+        abilities.Add(GetComponent<DamageBotAbility1>());
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }
