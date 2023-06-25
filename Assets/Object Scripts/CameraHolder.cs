@@ -45,7 +45,6 @@ public class CameraHolder : MonoBehaviour
         // created my own point did not work for some reason
         realLookPoint = new GameObject("realLookP").GetComponent<Transform>();
         normalCam.LookAt = realLookPoint;
-        print(realLookPoint.position);
         targetZoom = zoomScale;
     }
 

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class DamageBotAbility1 : InputableClass
 {
-    protected DamageBot damBot;
     public GameObject bullet;
     public Vector3 aimOffset;
     // Start is called before the first frame update
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-                cooldown -= Time.deltaTime;
-        if (0 > cooldown && castable)
+        
+        base.Update();
+
+        if (0 >= cooldown && castable)
         {
             StartCoroutine("ShotBullet");
             cooldown = setCooldown;

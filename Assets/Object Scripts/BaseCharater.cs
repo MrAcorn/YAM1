@@ -9,27 +9,36 @@ public class BaseCharater : MonoBehaviour
     [SerializeField] protected Stats stats;
     [SerializeField] protected CombatStats combatStats;
     [SerializeField] protected KnockDownRespawn knockDR;
+    [SerializeField] protected CCStatus ccStatus;
+    [SerializeField] protected Rigidbody rb;
     [SerializeField] public HashSet<InputableClass> abilities = new HashSet<InputableClass>();
     
-    protected bool dead = true;
 
-    // Update is called once per frame
-    protected virtual void Update()
+    protected virtual void Start()
     {
-        print("ability size: " + abilities.Count);
+        caller = GetComponent<Caller>();
+        stats = GetComponent<Stats>();
+        ccStatus = GetComponent<CCStatus>();
+        rb = GetComponent<Rigidbody>();
+        combatStats = GetComponent<CombatStats>();
+        knockDR = GetComponent<KnockDownRespawn>();
+        Invoke("Alive", 0.25f);
+    }
 
-        if (knockDR.dead && !dead)
-        {
+    protected virtual void Dead(){
+        if(ccStatus != null){ ccStatus.ClenseCC(); }
+            
             foreach(var ability in abilities){
-                ability.castable = false;
+                
+                ability.enabled = false;
             }
-        }
-
-                if (!knockDR.dead && dead)
-        {
+    }
+    protected virtual void Alive(){
+            if(ccStatus != null){ ccStatus.ClenseCC(); }
             foreach(var ability in abilities){
+                
+                ability.enabled = true;
                 ability.castable = true;
             }
-        }
     }
 }

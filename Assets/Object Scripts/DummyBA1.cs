@@ -8,15 +8,10 @@ public class DummyBA1 : InputableClass
     [SerializeField] private float aimOffset;
     [SerializeField] private GameObject bullet;
 
-    protected void Update()
-    {
-        cooldown -= Time.deltaTime;
-
-    }
     public override void InputCalled()
     {
         Vector3 hold = Vector3.MoveTowards(transform.position, aimR.aimPoint, aimOffset);
-        if (cooldown <= 0)
+        if (cooldown <= 0 && castable)
         {
             cooldown = setCooldown;
             caller.Call(gameObject.name, "ABA1 - Dummy", 3);

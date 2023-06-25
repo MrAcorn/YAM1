@@ -86,6 +86,7 @@ public class KnockDownRespawn : MonoBehaviour
     void Death()
     {
         caller.Call(this.ToString(), gameObject.name + " Is Dead!", 3);
+        this.SendMessage("Dead");
         if (stats.heath <= 0)
         {
             rb.useGravity = false;
@@ -103,6 +104,7 @@ public class KnockDownRespawn : MonoBehaviour
 
     public void Live()
     {
+        this.SendMessage("Alive");
         rb.useGravity = true;
         damageTaken = 0;
         caller.Call(this.ToString(), gameObject.name + " Is Alive!", 3);

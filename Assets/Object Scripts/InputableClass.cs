@@ -14,7 +14,7 @@ public class InputableClass : MonoBehaviour
     [SerializeField] protected int input = 0;
     
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         stats = GetComponent<Stats>();
         trigger = GetComponent<InputCollecter>();
@@ -29,9 +29,10 @@ public class InputableClass : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
+        if(cooldown > 0)
+        cooldown -= Time.deltaTime;
     }
     public virtual void InputCalled()
     {
