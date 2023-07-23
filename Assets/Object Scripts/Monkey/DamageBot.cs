@@ -12,6 +12,7 @@ public class DamageBot : BaseCharater
         base.Start();
 
         abilities.Add(GetComponent<DamageBotAbility1>());
+        abilities.Add(GetComponent<DamageBotAbility2>());
         Invoke("Alive", 0.25f);
     }
 

@@ -71,8 +71,10 @@ public class CCStatus : MonoBehaviour
 
     public void applyStun(float time){
          ccEffects.Add(new crowdControl(
-            (BaseCharater chara) => {foreach(var ablilty in chara.abilities){ablilty.castable = false;}},
-            (BaseCharater chara) => {foreach(var ablilty in chara.abilities){ablilty.castable = true;}},
+            (BaseCharater chara) => {foreach(var ablilty in chara.abilities){ablilty.castable = false;}
+            if(chara.movement != null){chara.movement.enabled = false;}},
+            (BaseCharater chara) => {foreach(var ablilty in chara.abilities){ablilty.castable = true;}
+            if(chara.movement != null){chara.movement.enabled = true;}},
             time, "stun", -1 ));
         
     }

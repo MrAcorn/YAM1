@@ -18,7 +18,7 @@ public class GeneralMovement : MonoBehaviour
     public float currentHeight;
     public float reltiveGround;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         caller = GetComponent<Caller>();
         inputC = GetComponent<InputCollecter>();

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8219810753879474668}
   - component: {fileID: 8219810753879474669}
   - component: {fileID: 8219810753879474674}
-  m_Layer: 0
-  m_Name: Range
+  - component: {fileID: -8700905601081476414}
+  m_Layer: 2
+  m_Name: DBA2Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +41,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8219810753879474675}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -58,3 +59,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DBA2: {fileID: 0}
+--- !u!114 &-8700905601081476414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219810753879474675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9b038dc7fc5c4ca7d215166977a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageable: 0
+  playerCharater: 0
+  npc: 0
+  neutral: 0
+  terrain: 0
+  bullet: 0
+  others: []

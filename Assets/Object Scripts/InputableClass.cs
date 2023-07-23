@@ -17,10 +17,9 @@ public class InputableClass : MonoBehaviour
     protected virtual void Start()
     {
         stats = GetComponent<Stats>();
-        trigger = GetComponent<InputCollecter>();
         caller = GetComponent<Caller>();
         //Set button
-        if (!trigger.AddInput(this, input))
+        if (TryGetComponent<InputCollecter>(out trigger) && !trigger.AddInput(this, input))
         {
             caller.Call(gameObject.name, "I was not set to a button!", 3);
         }

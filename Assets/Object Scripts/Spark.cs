@@ -18,7 +18,7 @@ public class Spark : MonoBehaviour
     public float setCoolDown;
     [SerializeField] private bool cdOn;
     public List<float> modif = new List<float>();
-    // should have used enum for this script...
+    // could have used enum for this script...
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,7 @@ public class Spark : MonoBehaviour
         int yhold = (inputC.up ? 1 : 0) - (inputC.down ? 1 : 0);
         int zhold = (inputC.Fwrd ? 1 : 0) - (inputC.Bwrd ? 1 : 0);
 
-        rb.AddForce(new Vector3((xhold * modif[0]),(yhold * modif[1]),(zhold * modif[2])),ForceMode.Impulse);
+        rb.AddForce(transform.TransformDirection(new Vector3((xhold * modif[0]),(yhold * modif[1]),(zhold * modif[2]))),ForceMode.Impulse);
         coolDown = setCoolDown * (cdOn ? 1 : 0);
     }
     public void JuggernautAblility()

@@ -11,9 +11,10 @@ public class BaseCharater : MonoBehaviour
     [SerializeField] protected KnockDownRespawn knockDR;
     [SerializeField] protected CCStatus ccStatus;
     [SerializeField] protected Rigidbody rb;
+    [SerializeField] public MonoBehaviour movement;
     [SerializeField] public HashSet<InputableClass> abilities = new HashSet<InputableClass>();
-    
 
+    
     protected virtual void Start()
     {
         caller = GetComponent<Caller>();

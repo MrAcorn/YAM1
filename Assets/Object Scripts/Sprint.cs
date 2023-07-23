@@ -2,29 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sprint : MonoBehaviour
+public class Sprint : InputableClass
 {
-    private Caller caller;
-    private InputCollecter inputC;
-    private Stats stats;
-    private CCStatus ccStatus;
     private Rigidbody rb;
     private GeneralMovement gm;
     private CombatStats combatStats;
 
     //
     [SerializeField] private bool sprinting;
-    [SerializeField] private bool trigger;
+    private bool notFrameOfSprint;
     private float timerHold;
     private float timerHold1;
     public bool consumeEnergy;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        caller = GetComponent<Caller>();
-        inputC = GetComponent<InputCollecter>();
-        stats = GetComponent<Stats>();
-        ccStatus = GetComponent<CCStatus>();
+        base.Start();
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
         combatStats = GetComponent<CombatStats>();
@@ -36,7 +29,7 @@ public class Sprint : MonoBehaviour
     {
 
         timerHold1 += Time.deltaTime;
-        if (inputC.sprint && !trigger && stats.energy > stats.energyRegen)
+        if (trigger.sprint && !notFrameOfSprint && stats.energy > stats.energyRegen && castable)
         {
             stats.energy -= stats.sprintCost * stats.heightCostModifier;
             caller.Call(this.ToString(),"Sprinting", 2);
@@ -44,7 +37,7 @@ public class Sprint : MonoBehaviour
             stats.speed += stats.sprintSpeed;
         }
 
-        if (sprinting)
+        if (sprinting && castable)
         {
             timerHold1 = 0;
             timerHold += Time.deltaTime;
@@ -55,13 +48,13 @@ public class Sprint : MonoBehaviour
 
             }
 
-            if(inputC.up && inputC.down)
+            if(trigger.up && trigger.down)
             {
 
             }
             else
             {
-                if (inputC.up)
+                if (trigger.up)
                 {
 
                     rb.AddForce(Vector3.up * stats.heightModifier, ForceMode.Acceleration);
@@ -76,7 +69,7 @@ public class Sprint : MonoBehaviour
                     }
 
                 }
-                if (inputC.down)
+                if (trigger.down)
                 {
 
                     rb.AddForce(Vector3.down * stats.heightModifier, ForceMode.Acceleration);
@@ -98,7 +91,7 @@ public class Sprint : MonoBehaviour
             combatStats.energyRegenOn = !consumeEnergy;
         }
 
-        if ((!inputC.sprint || stats.energy <= 0) && sprinting)
+        if ((!trigger.sprint || stats.energy <= 0 || !castable) && sprinting)
         {
             stats.speed -= stats.sprintSpeed;
             caller.Call(this.ToString(), "Stop Sprinting", 2);
@@ -109,7 +102,7 @@ public class Sprint : MonoBehaviour
         {
             combatStats.energyRegenOn = true;
         }
-        trigger = inputC.sprint;
+        notFrameOfSprint = trigger.sprint;
 
 
     }

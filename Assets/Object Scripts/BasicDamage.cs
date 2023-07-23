@@ -27,7 +27,7 @@ public class BasicDamage : MonoBehaviour
         eM = GetComponent<ElementalManager>();
         damage += givenDamage;
         element = givenElement;
-        eM.ApplyElement(element, source);
+        eM.ApplyElement((Elements)element, source);
         combatStats.InCombat();
         stats.heath -= damage * (1 - stats.defence[element] / 100);
         Destroy(this);

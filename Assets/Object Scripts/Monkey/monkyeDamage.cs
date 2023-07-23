@@ -13,7 +13,7 @@ public class MonkeyDamage : BasicDamage
         damage += givenDamage;
         int hold = Random.Range(0, 7);
         element = hold;
-        eM.ApplyElement(element, gameObject);
+        eM.ApplyElement((Elements)element, gameObject);
         combatStats.InCombat();
         stats.heath -= damage * (1 - stats.defence[element] / 100);
         Destroy(this);
