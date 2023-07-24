@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestDamage : BasicDamage
 {
 
-    override public void AssginDamage(float givenDamage, int givenElement, GameObject source)
+    override public void AssginDamage(float givenDamage, Elements givenElement, GameObject source)
     {
         if(TryGetComponent<CCStatus>(out CCStatus cControl)){
             cControl.applyStun(5);

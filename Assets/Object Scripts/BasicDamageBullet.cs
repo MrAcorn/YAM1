@@ -9,7 +9,7 @@ public class BasicDamageBullet : MonoBehaviour
     public GameObject origName;
     public Vector3 target = Vector3.zero;
     public float bulDamage = 10;
-    public int bulElement = 0;
+    public Elements bulElement = 0;
     protected TagsBase tags;
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class BasicDamageBullet : MonoBehaviour
         target = Dir;
         transform.LookAt(Dir);
     }
-    public virtual void dmgStat(float givenDmg, int givenElement)
+    public virtual void dmgStat(float givenDmg, Elements givenElement)
     {
         bulDamage = givenDmg;
         bulElement = givenElement;

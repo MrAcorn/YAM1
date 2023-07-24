@@ -27,6 +27,7 @@ public class monkyeBullet : BasicDamageBullet
     public void applyDMG()
     {
         MonkeyDamage damageInstance = entityHit.AddComponent<MonkeyDamage>();
+        // asgined element doest matter
         damageInstance.AssginDamage(bulDamage, bulElement, origName);
         ColiReport(entityHit);
     }

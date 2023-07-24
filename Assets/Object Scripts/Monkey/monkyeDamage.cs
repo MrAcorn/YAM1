@@ -8,14 +8,18 @@ public class MonkeyDamage : BasicDamage
     // Start is called before the first frame update
 
     
-    public override void AssginDamage(float givenDamage, int givenElement, GameObject source)
+    public override void AssginDamage(float givenDamage, Elements givenElement, GameObject source)
     {
         damage += givenDamage;
-        int hold = Random.Range(0, 7);
-        element = hold;
-        eM.ApplyElement((Elements)element, gameObject);
+        //int hold = Random.Range(0, 7);
+        //element = (Elements)hold;
+        //eM.ApplyElement((Elements)element, gameObject);
+        eM.ApplyElement(Elements.Metal, gameObject);
+        eM.ApplyElement(Elements.Water, gameObject);
+        combatStats.RunTriggers(triggers.PreDamage, this);
         combatStats.InCombat();
-        stats.heath -= damage * (1 - stats.defence[element] / 100);
+        stats.heath -= damage * (1 - stats.defence[(int)element] / 100);
+        combatStats.RunTriggers(triggers.PostDamage, this);
         Destroy(this);
     }
 }

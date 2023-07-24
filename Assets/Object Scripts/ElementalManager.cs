@@ -60,13 +60,23 @@ public class ElementalManager : MonoBehaviour
         string calling = elementQueue[0] < elementQueue[1] ? elementQueue[0].ToString() + elementQueue[1].ToString() : elementQueue[1].ToString() + elementQueue[0].ToString(); 
         Invoke(calling, 0);
         // call elemental Effect manager useing the the data from the frist 2 spots
+        Invoke("DelQueue",0);
+    }
+
+    private void WaterMetal(){
+        caller.Call(this.ToString(), "WaterMetal Reaction activated!", 3);
+        if(GetComponent<WaterMetalEffect>() == null){
+        WaterMetalEffect effect = gameObject.AddComponent<WaterMetalEffect>();
+        effect.source = elementQueueName[1];
+        }
+        
+
+    }
+    
+    private void DelQueue(){
         elementQueue.RemoveAt(1);
         elementQueue.RemoveAt(0);
         elementQueueName.RemoveAt(1);
         elementQueueName.RemoveAt(0);
-    }
-
-    private void WaterMetal(){
-        print("Hello! I am WaterMetal");
     }
 }

@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputCollecter : MonoBehaviour
 {
-    public PlayerControl controls;
     //Higer Up Scripts
     private Caller caller;
     //set buttons
@@ -45,10 +43,7 @@ public class InputCollecter : MonoBehaviour
     public List<InputableClass> rightCList;
     //keep it 1 thru 10, where 10 is menu stuff
     public List<bool> ability = new List<bool>();
-    // Start is called before the first frame update
-    void Awake(){
-        controls = new PlayerControl();
-    }
+    // Start is called before the first frame updatex
     void Start()
     {
         caller = GetComponent<Caller>();

@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum triggers{
+    PreDamage, PostDamage
+}
 public class CombatStats : MonoBehaviour
 {
+    public Dictionary<EffectBase, triggers> triggerList = new Dictionary<EffectBase, triggers>();
     private Caller caller;
     private InputCollecter inputC;
     private Stats stats;
@@ -48,8 +52,6 @@ public class CombatStats : MonoBehaviour
         timer = 0;
         inCombat = true;
     }
-
-
     void HeathRegenerating()
     {
         if (stats.heath < stats.maxHeath && heathRegenOn && !inCombat)
@@ -70,5 +72,17 @@ public class CombatStats : MonoBehaviour
         {
             stats.stunShield += stats.stunShieldRegen;
         }
+    }
+
+    public int RunTriggers(triggers trigType, Component trigSource){
+        int ret = 0;
+        foreach (var trigger in triggerList){
+            if(trigger.Value == trigType){
+                trigger.Key.target = trigSource;
+                trigger.Key.runTrigger(trigType);
+                ret++;
+            }
+        }
+        return ret;
     }
 }
