@@ -68,6 +68,30 @@ public class ElementalManager : MonoBehaviour
         if(GetComponent<WaterMetalEffect>() == null){
         WaterMetalEffect effect = gameObject.AddComponent<WaterMetalEffect>();
         effect.source = elementQueueName[1];
+        effect.time = 3;
+        }
+        else{
+            WaterMetalEffect effect = gameObject.GetComponent<WaterMetalEffect>();
+            effect.source = elementQueueName[1];
+            effect.time = 3;
+        }
+        
+
+    }
+
+    private void WaterWater(){
+        caller.Call(this.ToString(), "WaterWater Reaction activated!", 3);
+        if(ccStatus != null){
+            ccStatus.applySilence(3);
+        }
+        
+
+    }
+
+        private void MetalMetal(){
+        caller.Call(this.ToString(), "MetalMetal Reaction activated!", 3);
+        if(ccStatus != null){
+            ccStatus.applyStun(3);
         }
         
 

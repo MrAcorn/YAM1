@@ -14,6 +14,7 @@ public class Sprint : InputableClass
     private float timerHold;
     private float timerHold1;
     public bool consumeEnergy;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -96,6 +97,9 @@ public class Sprint : InputableClass
             stats.speed -= stats.sprintSpeed;
             caller.Call(this.ToString(), "Stop Sprinting", 2);
             sprinting = false;
+            if(stats.energy <= 0){
+                Burnt();
+            }
         }
 
         if (timerHold1 > stats.sprintRegenStartUp && consumeEnergy)
@@ -111,6 +115,9 @@ public class Sprint : InputableClass
         stats.speed -= stats.boostConstiution;
     }
 
+    protected virtual void Burnt(){
+        gameObject.AddComponent<BurnOut>();
+    }
 }
 
 

@@ -1034,6 +1034,7 @@ GameObject:
   - component: {fileID: 1390954108}
   - component: {fileID: 1390954113}
   - component: {fileID: 1390954114}
+  - component: {fileID: 1390954115}
   m_Layer: 0
   m_Name: Test Obj
   m_TagString: Player
@@ -1296,7 +1297,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1390954105
 MonoBehaviour:
@@ -1380,9 +1381,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94870b9f10a00834abd440d8367feb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castable: 0
+  cooldown: 0
+  setCooldown: 1
+  input: 0
   className: Assassin
-  coolDown: 0
-  setCoolDown: 1
   cdOn: 1
   modif:
   - 20
@@ -1479,6 +1482,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ec4fccd1e5dcb4458ac38314f57d411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1390954115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390954095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87edf53353436a04ea08a467487190b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1395609072

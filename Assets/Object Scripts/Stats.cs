@@ -48,6 +48,7 @@ public class Stats : MonoBehaviour
     public float jumpCD;
     public float jumpConstitution;
     public float boostConstiution;
+    public float burnOutTime;
     public List<float> modif = new List<float>(4);
     // (in order) untaged, fire, water, wood, metal, earth, celestial
     public List<float> defence = new List<float>(7);

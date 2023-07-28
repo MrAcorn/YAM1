@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spark : MonoBehaviour
+public class Spark : InputableClass
 {
-    private Caller caller;
     private InputCollecter inputC;
-    private Stats stats;
     private CCStatus ccStatus;
     private Rigidbody rb;
     private GeneralMovement gm;
@@ -14,30 +12,31 @@ public class Spark : MonoBehaviour
     
     //
     public string className;
-    public float coolDown;
-    public float setCoolDown;
+
     [SerializeField] private bool cdOn;
     public List<float> modif = new List<float>();
     // could have used enum for this script...
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        caller = GetComponent<Caller>();
+        input = 8;
         inputC = GetComponent<InputCollecter>();
-        stats = GetComponent<Stats>();
         ccStatus = GetComponent<CCStatus>();
         rb = GetComponent<Rigidbody>();
         gm = GetComponent<GeneralMovement>();
-
+        base.Start();
         
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        coolDown = Mathf.Clamp((coolDown - Time.deltaTime),0, coolDown);
-        if(coolDown == 0 && inputC.spark)
+        cooldown = Mathf.Clamp((cooldown - Time.deltaTime),0, cooldown);
+    }
+    public override void InputCalled()
+    {
+        if(cooldown <= 0)
         {
             Invoke((className + "Ablility"), 0);
         }
@@ -48,8 +47,14 @@ public class Spark : MonoBehaviour
         int yhold = (inputC.up ? 1 : 0) - (inputC.down ? 1 : 0);
         int zhold = (inputC.Fwrd ? 1 : 0) - (inputC.Bwrd ? 1 : 0);
 
-        rb.AddForce(transform.TransformDirection(new Vector3((xhold * modif[0]),(yhold * modif[1]),(zhold * modif[2]))),ForceMode.Impulse);
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        if(castable){
+            rb.AddForce(transform.TransformDirection(new Vector3((xhold * modif[0]),(yhold * modif[1]),(zhold * modif[2]))),ForceMode.Impulse);
+        }
+        else{
+            //switch to root after testing
+            ccStatus.ClenseCC("stun");
+        }
+        cooldown = setCooldown * (cdOn ? 1 : 0);
     }
     public void JuggernautAblility()
     {
@@ -59,25 +64,25 @@ public class Spark : MonoBehaviour
         }
         Invoke("EndJuggernaut", modif[1]);
 
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        cooldown = setCooldown * (cdOn ? 1 : 0);
     }
     public void MageAblility()
     {
         //ccStatus.immunized = true;
         Invoke("EndMage", modif[0]);
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        cooldown = setCooldown * (cdOn ? 1 : 0);
     }
     public void DiverAblility()
     {
         //ccStatus.NegCleanse();
         Invoke("EndDiver", modif[0]);
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        cooldown = setCooldown * (cdOn ? 1 : 0);
     }
     public void ZoneAblility()
     {
         stats.Shield += (stats.maxHeath * modif[0]);
         Invoke("EndZone", modif[1]);
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        cooldown = setCooldown * (cdOn ? 1 : 0);
 
     }
     public void SupportAblility()
@@ -89,13 +94,13 @@ public class Spark : MonoBehaviour
         modif[2] = ((1 - (stats.heath / stats.maxHeath)) * stats.maxHeath * modif[0]);
         stats.Shield += modif[2];
         Invoke("EndBruiser", modif[1]);
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        cooldown = setCooldown * (cdOn ? 1 : 0);
     }
     public void SpecialistAblility()
     {
         stats.speed += stats.setSpeed * modif[0];
         Invoke("EndSpecialist", modif[1]);
-        coolDown = setCoolDown * (cdOn ? 1 : 0);
+        cooldown = setCooldown * (cdOn ? 1 : 0);
     }
 
     private void EndJuggernaut()

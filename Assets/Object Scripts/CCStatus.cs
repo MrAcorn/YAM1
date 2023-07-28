@@ -44,40 +44,84 @@ public class CCStatus : MonoBehaviour
     }
 
     public void ClenseCC(){
-        for(int i = 0; i < ccEffects.Count; i++){ccEffects.Remove(ccEffects[i]); i--;}
+        for(int i = 0; i < ccEffects.Count; i++){
+            ccEffects[i].clearCC(character);
+            ccEffects.Remove(ccEffects[i]); i--;}
     }
-
+    public void ClenseCC(string status){
+        for(int i = 0; i < ccEffects.Count; i++){
+        if(ccEffects[i].givenName == status){
+            ccEffects[i].clearCC(character);
+            ccEffects.Remove(ccEffects[i]); i--;
+        }    
+        }
+    }
+    public void ClenseCC(int alainment){
+        for(int i = 0; i < ccEffects.Count; i++){
+        if(ccEffects[i].alainment == alainment){
+            ccEffects[i].clearCC(character);
+            ccEffects.Remove(ccEffects[i]); i--;
+        }    
+        }
+    }
     public class crowdControl{
-        public int freindly = 0;
+        public int alainment = 0;
         public string givenName;
         public Dictionary<string,float> stats = new Dictionary<string,float>(){};
         public Action<BaseCharater> applyCC;
         public Action<BaseCharater> clearCC;
-        public crowdControl( Action<BaseCharater> codeApplyCC, Action<BaseCharater> codeClearCC, float time, string name ){
-            applyCC = codeApplyCC;
-            clearCC = codeClearCC;
-            stats.Add("timer", time);
-            givenName = name;
-        }
         public crowdControl( Action<BaseCharater> codeApplyCC, Action<BaseCharater> codeClearCC, float time, string name, int helpful ){
             applyCC = codeApplyCC;
             clearCC = codeClearCC;
             stats.Add("timer", time);
             givenName = name;
-            freindly = helpful;
+            alainment = helpful;
         }
 
     }
 
-    public void applyStun(float time){
-         ccEffects.Add(new crowdControl(
-            (BaseCharater chara) => {foreach(var ablilty in chara.abilities){ablilty.castable = false;}
-            if(chara.movement != null){chara.movement.enabled = false;}},
-            (BaseCharater chara) => {foreach(var ablilty in chara.abilities){ablilty.castable = true;}
-            if(chara.movement != null){chara.movement.enabled = true;}},
-            time, "stun", -1 ));
+    public crowdControl applyStun(float time){
+        crowdControl hold = new crowdControl(
+            (BaseCharater chara) => {
+                foreach(var ablilty in chara.abilities){ablilty.castable = false;}
+            if(chara.movement != null){chara.movement.enabled = false;}
+            },
+            (BaseCharater chara) => {
+                foreach(var ablilty in chara.abilities){ablilty.castable = true;}
+            if(chara.movement != null){chara.movement.enabled = true;}
+            },
+            time, "stun", -1 );
+         ccEffects.Add(hold);
+        return hold;
         
     }
 
+    public crowdControl applySilence(float time){
+        crowdControl hold =new crowdControl(
+            (BaseCharater chara) => {
+                foreach(var ablilty in chara.abilities){ablilty.castable = false;}
+            },
+            (BaseCharater chara) => {
+                foreach(var ablilty in chara.abilities){ablilty.castable = true;}
+            },
+            time, "silence", -1 );
+        ccEffects.Add(hold);
+        return hold;
+        
+    }
 
+        public crowdControl applySlow(float time, float size){
+            stats.speed -= size;
+        crowdControl hold =new crowdControl(
+            (BaseCharater chara) => {
+            },
+            (BaseCharater chara) => {
+                stats.speed += size;
+            },
+            time, "slow", -1 );
+        hold.stats.Add("size", size);
+        ccEffects.Add(hold);
+        return hold;
+        
+    }
 }

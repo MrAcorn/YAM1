@@ -13,7 +13,8 @@ public class TestChara : BaseCharater
         movement = GetComponent<GeneralMovement>();
         abilities.Add(GetComponent<Sprint>());
         abilities.Add(GetComponent<DummyBA1>());
-        Invoke("Alive", 0.25f);
+        abilities.Add(GetComponent<Spark>());
+        Invoke("Alive", 0);
     }
 
     // Update is called once per frame

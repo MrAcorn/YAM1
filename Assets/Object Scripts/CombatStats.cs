@@ -77,12 +77,25 @@ public class CombatStats : MonoBehaviour
     public int RunTriggers(triggers trigType, Component trigSource){
         int ret = 0;
         foreach (var trigger in triggerList){
-            if(trigger.Value == trigType){
+            if(trigger.Value == trigType && trigger.Key != null){
                 trigger.Key.target = trigSource;
                 trigger.Key.runTrigger(trigType);
                 ret++;
             }
         }
+        ClearTrigList();
         return ret;
+    }
+
+    private void ClearTrigList(){
+        bool done = true;
+        foreach (var trigger in triggerList){
+            if(trigger.Key != null){
+                triggerList.Remove(trigger.Key);
+                done = false;
+                break;
+            }
+        }
+        if(!done){ ClearTrigList(); }
     }
 }

@@ -23,4 +23,13 @@ public class WaterMetalEffect : EffectBase
             caller.Call(this.name, "WaterMetal DamageBuff to: " + damageInstance.damage, 3);
         }
     }
+
+    void Update(){
+        if(time != -1 && time < 0){
+            Destroy(this);
+        }
+        else{
+            time -= Time.deltaTime;
+        }
+    }
 }
