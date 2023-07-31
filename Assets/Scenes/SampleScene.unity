@@ -1202,11 +1202,10 @@ MonoBehaviour:
   maxEnergy: 5
   setMaxEnergy: 5
   energyRegen: 0.25
-  Shield: 0
   stunShield: 0
   stunShieldRegen: 0
   maxStunShield: 0
-  setMaxStunShield: 0
+  setMaxStunShield: 100
   ultCharge: 0
   maxUltCharge: 0
   coolDownReduction: 0
@@ -1231,6 +1230,7 @@ MonoBehaviour:
   jumpCD: 0.3
   jumpConstitution: 1
   boostConstiution: 0.1
+  burnOutTime: 5
   modif: []
   defence:
   - 0
@@ -2446,6 +2446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 0}
   messageCounter: 0
+  maxMessageCount: 15
   setPriority: 3
   chatTracker: []
 --- !u!114 &2082651738
@@ -2512,6 +2513,10 @@ PrefabInstance:
     - target: {fileID: 4705374137396770415, guid: 5175e40610ce9bc4f8d4b24c52bba0cf, type: 3}
       propertyPath: setMaxHeath
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705374137396770415, guid: 5175e40610ce9bc4f8d4b24c52bba0cf, type: 3}
+      propertyPath: attack.Array.data[0]
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5099870985235122971, guid: 5175e40610ce9bc4f8d4b24c52bba0cf, type: 3}
       propertyPath: m_RootOrder

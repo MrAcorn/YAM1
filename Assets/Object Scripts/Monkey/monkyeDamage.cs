@@ -16,11 +16,7 @@ public class MonkeyDamage : BasicDamage
         //eM.ApplyElement((Elements)element, gameObject);
         eM.ApplyElement(Elements.Metal, gameObject);
         eM.ApplyElement(Elements.Water, gameObject);
-        combatStats.RunTriggers(triggers.PreDamage, this);
-        combatStats.InCombat();
-        stats.heath -= damage * (1 - stats.defence[(int)element] / 100);
-        combatStats.RunTriggers(triggers.PostDamage, this);
-        Destroy(this);
+        base.AssginDamage(givenDamage, Elements.Untaged, source);
     }
 }
 

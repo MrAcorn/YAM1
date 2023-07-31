@@ -6,7 +6,8 @@ public class BasicDamage : MonoBehaviour
 {
     protected Caller caller;
     protected Stats stats;
-    protected CombatStats combatStats;
+    public CombatStats AllyCombatStats;
+    protected CombatStats EnemCombatStats;
     [SerializeField] protected ElementalManager eM;
 
     public float damage = 0;
@@ -17,22 +18,26 @@ public class BasicDamage : MonoBehaviour
 
         caller = GetComponent<Caller>();
         stats = GetComponent<Stats>();
-        combatStats = GetComponent<CombatStats>();
+        EnemCombatStats = GetComponent<CombatStats>();
         eM = GetComponent<ElementalManager>();
         //
     }
 
     public virtual void AssginDamage(float givenDamage, Elements givenElement, GameObject source)
     {
-        combatStats = GetComponent<CombatStats>();
+        AllyCombatStats = source.GetComponent<CombatStats>();
+        EnemCombatStats = GetComponent<CombatStats>();
         eM = GetComponent<ElementalManager>();
-        combatStats.RunTriggers(triggers.PreDamage, this);
+        AllyCombatStats.RunTriggers(triggers.AllyPreDamage, this, GetComponent<CombatStats>());
+        EnemCombatStats.RunTriggers(triggers.EnemyPreDamage, this, source.GetComponent<CombatStats>());
         damage += givenDamage;
         element = givenElement;
         eM.ApplyElement((Elements)element, source);
-        combatStats.InCombat();
-        stats.heath -= damage * (1 - stats.defence[((int)element)] / 100);
-        combatStats.RunTriggers(triggers.PostDamage, this);
+        AllyCombatStats.InCombat();
+        EnemCombatStats.InCombat();
+        stats.TakeDamage(givenDamage,givenElement,false);
+        AllyCombatStats.RunTriggers(triggers.AllyPostDamage, this, GetComponent<CombatStats>());
+        EnemCombatStats.RunTriggers(triggers.EnemyPostDamage, this, source.GetComponent<CombatStats>());
         Destroy(this);
     }
 

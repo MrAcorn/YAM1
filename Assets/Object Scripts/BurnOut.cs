@@ -10,6 +10,7 @@ public class BurnOut : EffectBase
     // Start is called before the first frame update
     void Start()
     {
+        //print("I am burnt");
         caller = GetComponent<Caller>();
         source = gameObject;
         ccS = GetComponent<CCStatus>();
@@ -19,7 +20,7 @@ public class BurnOut : EffectBase
         Invoke("BurnOutOver",ccTime);
     }
     protected virtual void BurnOutStart(){
-        ccS.applySlow(ccTime, playerStats.setSpeed * 0.5f);
+        ccS.applySlow(ccTime, playerStats.setSpeed * 0.9f);
         ccS.applySilence(ccTime);
     }
     protected virtual void BurnOutOver(){

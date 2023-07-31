@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum triggers{
-    PreDamage, PostDamage
+    AllyPreDamage, AllyPostDamage, EnemyPreDamage, EnemyPostDamage
 }
 public class CombatStats : MonoBehaviour
 {
@@ -74,16 +74,16 @@ public class CombatStats : MonoBehaviour
         }
     }
 
-    public int RunTriggers(triggers trigType, Component trigSource){
+    public int RunTriggers(triggers trigType, Component trigSource, CombatStats targetGameObj){
+        //print("I am: " + gameObject.name + " my target is: " + targetGameObj.gameObject.name + " trigType is: " + trigType);
         int ret = 0;
         foreach (var trigger in triggerList){
             if(trigger.Value == trigType && trigger.Key != null){
-                trigger.Key.target = trigSource;
-                trigger.Key.runTrigger(trigType);
+                trigger.Key.trigSource = trigSource;
+                trigger.Key.runTrigger(trigType, targetGameObj);
                 ret++;
             }
         }
-        ClearTrigList();
         return ret;
     }
 

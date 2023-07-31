@@ -16,12 +16,6 @@ public class Caller : MonoBehaviour
         }
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     /// <summary>
     ///gameObject.name for source | what you wana say | Mute(0), All(1), Abli(2), Dev(3)
     /// </summary>

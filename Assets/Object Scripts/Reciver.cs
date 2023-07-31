@@ -8,6 +8,7 @@ public class Reciver : MonoBehaviour
     public Text txt;
     private int messageOnScreen;
     public int messageCounter = 0;
+    public int maxMessageCount = 15;
     /*Setpriority expalnation:
     0 = Mute all
     1 = All chat
@@ -48,7 +49,7 @@ public class Reciver : MonoBehaviour
     {
         chatTracker.Add(message);
         messageOnScreen++;
-        while(messageOnScreen > 10)
+        while(messageOnScreen > maxMessageCount)
         {
             chatTracker.RemoveAt(0);
             messageOnScreen--;

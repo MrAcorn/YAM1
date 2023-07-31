@@ -19,7 +19,7 @@ public class InputableClass : MonoBehaviour
         stats = GetComponent<Stats>();
         caller = GetComponent<Caller>();
         //Set button
-        if (TryGetComponent<InputCollecter>(out trigger) && !trigger.AddInput(this, input))
+        if (TryGetComponent<InputCollecter>(out trigger) && input != 0 && !trigger.AddInput(this, input))
         {
             caller.Call(gameObject.name, "I was not set to a button!", 3);
         }

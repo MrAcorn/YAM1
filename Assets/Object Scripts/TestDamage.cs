@@ -8,7 +8,7 @@ public class TestDamage : BasicDamage
     override public void AssginDamage(float givenDamage, Elements givenElement, GameObject source)
     {
         if(TryGetComponent<CCStatus>(out CCStatus cControl)){
-            cControl.applyStun(5);
+            cControl.applyStun(5, true);
         }
         base.AssginDamage(givenDamage, givenElement, source);
         

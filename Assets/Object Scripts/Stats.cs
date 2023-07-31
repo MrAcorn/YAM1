@@ -19,7 +19,7 @@ public class Stats : MonoBehaviour
     public float maxEnergy;
     public float setMaxEnergy;
     public float energyRegen;
-    public float Shield;
+    public List<ShieldInstance> Shield = new List<ShieldInstance>();
     public float stunShield;
     public float stunShieldRegen;
     public float maxStunShield;
@@ -71,6 +71,10 @@ public class Stats : MonoBehaviour
         speed = setSpeed;
         sprintSpeed = setSprintSpeed;
         heightCostModifier = setHeightCostModifier;
+
+        //Testing
+        //SetSheild(30, 10, this);
+        //SetSheild(10, 6, this);
     }
 
     // Update is called once per frame
@@ -88,6 +92,56 @@ public class Stats : MonoBehaviour
         {
             stunShield = maxStunShield;
         }
+
+        for(int i = 0; i < Shield.Count; i++){
+            Shield[i].time -= Time.deltaTime;
+            if(Shield[i].time <= 0){
+                Shield.RemoveAt(i);
+            }
+        }
+
+        //print("TotalShield: " + GetTotalShield());
+    }
+    public Stats TakeDamage(float damage, Elements type, bool ignoreSheild){
+        damage = damage * (1 - defence[((int)type)] / 100); 
+        if(!ignoreSheild){
+            while(damage > 0 && Shield.Count != 0){
+                Shield[Shield.Count - 1].value -= damage;
+                if(Shield[Shield.Count - 1].value <= 0){
+                    damage = -Shield[Shield.Count - 1].value;
+                    Shield.RemoveAt(Shield.Count - 1);
+                }
+                else{
+                    damage = 0;
+                }
+            }
+            if(damage > 0){
+                heath -= damage;
+            }
+        } 
+        return this;
+    }
+    public Stats SetSheild(float value, float time, Component source){
+        Shield.Add(new ShieldInstance(value, time, source));
+        return this;
+    }
+    public float GetTotalShield(){
+        float hold = 0;
+        for(int i = 0; i <Shield.Count; i++){
+            hold += Shield[i].value;
+        }
+        return hold;
+    }
+    public class ShieldInstance{
+        public float time;
+        public float value;
+        public Component source;
+        public ShieldInstance(float valueShield, float timeShield, Component sourceShield){
+            value = valueShield;
+            time = timeShield;
+            source = sourceShield;
+        }
+
     }
 
 }

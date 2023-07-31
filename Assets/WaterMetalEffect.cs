@@ -5,31 +5,42 @@ using UnityEngine;
 public class WaterMetalEffect : EffectBase
 {
     public float time = -1;
-    void Start(){
+    void Start()
+    {
         caller = GetComponent<Caller>();
         CombatStats combatS = GetComponent<CombatStats>();
-        combatS.triggerList.Add(this, triggers.PreDamage);
+        combatS.triggerList.Add(this, triggers.EnemyPreDamage);
     }
-    public override void runTrigger(triggers trigType)
+    public override void runTrigger(triggers trigType, CombatStats target)
     {
-        if(trigType == triggers.PreDamage){
+        if (trigType == triggers.EnemyPreDamage)
+        {
             PreDamage();
         }
     }
-    void PreDamage(){
-        if(target is BasicDamage){
-            BasicDamage damageInstance = (BasicDamage)target;
-            damageInstance.damage = damageInstance.damage * 1.1f;
+    void PreDamage()
+    {
+        if (trigSource is BasicDamage)
+        {
+            BasicDamage damageInstance = (BasicDamage)trigSource;
+            damageInstance.damage = damageInstance.damage * 1.5f;
             caller.Call(this.name, "WaterMetal DamageBuff to: " + damageInstance.damage, 3);
         }
     }
 
-    void Update(){
-        if(time != -1 && time < 0){
-            Destroy(this);
+    void Update()
+    {
+        if (time != -1)
+        {
+            if (time < 0)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                time -= Time.deltaTime;
+            }
         }
-        else{
-            time -= Time.deltaTime;
-        }
+
     }
 }

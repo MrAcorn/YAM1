@@ -13,7 +13,7 @@ public class CCStatus : MonoBehaviour
     private Stats stats;
     public List<CCStatus.crowdControl> ccEffects = new List<CCStatus.crowdControl>();
     //Hold condition
-    public Dictionary<string,float> ccStat = new Dictionary<string,float>(){};
+    //public Dictionary<string,float> ccStat = new Dictionary<string,float>(){};
     // Start is called before the first frame update
     void Start()
     {
@@ -80,18 +80,22 @@ public class CCStatus : MonoBehaviour
 
     }
 
-    public crowdControl applyStun(float time){
+    public crowdControl applyStun(float time, bool applySheild){
         crowdControl hold = new crowdControl(
             (BaseCharater chara) => {
                 foreach(var ablilty in chara.abilities){ablilty.castable = false;}
             if(chara.movement != null){chara.movement.enabled = false;}
+            if(stats.GetTotalShield() < stats.stunShield){
+                stats.stunShield = stats.GetTotalShield();
+            }
             },
             (BaseCharater chara) => {
                 foreach(var ablilty in chara.abilities){ablilty.castable = true;}
             if(chara.movement != null){chara.movement.enabled = true;}
             },
             time, "stun", -1 );
-         ccEffects.Add(hold);
+        stats.SetSheild(stats.stunShield,time,this);
+        ccEffects.Add(hold);
         return hold;
         
     }
@@ -110,7 +114,8 @@ public class CCStatus : MonoBehaviour
         
     }
 
-        public crowdControl applySlow(float time, float size){
+    public crowdControl applySlow(float time, float size){
+            size = Mathf.Clamp(stats.speed - size, 0.01f, 1);
             stats.speed -= size;
         crowdControl hold =new crowdControl(
             (BaseCharater chara) => {

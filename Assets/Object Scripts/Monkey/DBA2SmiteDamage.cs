@@ -8,8 +8,7 @@ public class DBA2SmiteDamage : BasicDamage
     override public void AssginDamage(float givenDamage, Elements givenElement, GameObject source)
     {
         if(TryGetComponent<CCStatus>(out CCStatus cControl)){
-            //change back to 1 sec stun after testing
-            cControl.applySlow(1,0.05f);
+            cControl.applyStun(1,true);
         }
         base.AssginDamage(givenDamage, givenElement, source);
         

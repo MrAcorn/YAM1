@@ -80,7 +80,7 @@ public class Spark : InputableClass
     }
     public void ZoneAblility()
     {
-        stats.Shield += (stats.maxHeath * modif[0]);
+        //stats.Shield += (stats.maxHeath * modif[0]);
         Invoke("EndZone", modif[1]);
         cooldown = setCooldown * (cdOn ? 1 : 0);
 
@@ -92,7 +92,7 @@ public class Spark : InputableClass
     public void BruiserAblility()
     {
         modif[2] = ((1 - (stats.heath / stats.maxHeath)) * stats.maxHeath * modif[0]);
-        stats.Shield += modif[2];
+        //stats.Shield += modif[2];
         Invoke("EndBruiser", modif[1]);
         cooldown = setCooldown * (cdOn ? 1 : 0);
     }
@@ -120,11 +120,11 @@ public class Spark : InputableClass
     }
     private void EndZone()
     {
-        stats.Shield -= (stats.maxHeath * modif[0]);
+        //stats.Shield -= (stats.maxHeath * modif[0]);
     }
     private void EndBruiser()
     {
-        stats.Shield -= modif[2];
+        //stats.Shield -= modif[2];
     }
     private void EndSpecialist()
     {

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EffectBase : MonoBehaviour
 {
+    public CombatStats targetCStats;
     public Caller caller; 
     public GameObject source;
-    public Component target;
+    public Component trigSource;
+    public int Allignment = 0;
 
-    public virtual void runTrigger(triggers trigType){
-
-    }
+    public virtual void runTrigger(triggers trigType, CombatStats targetGameObj){}
 }

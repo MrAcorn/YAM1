@@ -43,7 +43,7 @@ public class TestObjBullet : BasicDamageBullet
         if (other.gameObject != origName && oTags != null &&  oTags.damageable )
         {
             BasicDamage damageInstance = other.gameObject.AddComponent<TestDamage>();
-            damageInstance.AssginDamage(bulDamage, 0, this.gameObject);
+            damageInstance.AssginDamage(bulDamage, 0, origName);
             ColiReport(other.gameObject);
         }
     }
