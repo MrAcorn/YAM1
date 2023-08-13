@@ -7,6 +7,7 @@ public class MOD_SwordBullet : BasicDamageBullet
     public float activeFor;
     public float time;
     public MOD_Phased phased;
+    public MOD_SwordBlock SB;
     // Start is called before the first frame update
     void Update(){
         transform.position = origName.transform.position;
@@ -19,10 +20,11 @@ public class MOD_SwordBullet : BasicDamageBullet
 
         if (other.gameObject != origName && oTags != null &&  oTags.damageable )
         {
-            phased.ApplyPhaseStack(other.gameObject)
-            .ApplyPhaseStack(other.gameObject).ApplyPhaseEffect(other.gameObject.GetComponent<MOD_PhasedEnemy>());
             BasicDamage damageInstance = other.gameObject.AddComponent<TestDamage>();
             damageInstance.AssginDamage(bulDamage, 0, origName);
+            phased.ApplyPhaseStack(other.gameObject)
+            .ApplyPhaseStack(other.gameObject).ApplyPhaseEffect(other.gameObject.GetComponent<MOD_PhasedEnemy>());
+            SB.hit = true;
             ColiReport(other.gameObject);
         }
 

@@ -17,6 +17,7 @@ public class GeneralMovement : MonoBehaviour
     public bool grounded;
     public float currentHeight;
     public float reltiveGround;
+    [SerializeField] private int haltCounter;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -45,6 +46,7 @@ public class GeneralMovement : MonoBehaviour
         }
         
         Invoke("Move", 0);
+        Invoke("momentHalt", 0);
         //Grounded
         if (Mathf.Abs(rb.velocity.y)! >= 0.01f)
         {
@@ -75,9 +77,9 @@ public class GeneralMovement : MonoBehaviour
         Vector3 Fwrd1 = transform.TransformDirection(Vector3.forward);
         Vector3 Rwrd1 = transform.TransformDirection(Vector3.right);
 
-
-        Vector3 Fwrd = new Vector3(Fwrd1.x, 0, Fwrd1.z) * stats.speed * Fmoveing;
-        Vector3 Rwrd = new Vector3(Rwrd1.x, 0, Rwrd1.z) * stats.speed * Rmoveing;
+        float speed = Mathf.Clamp(stats.speed, 0.01f, 1);
+        Vector3 Fwrd = new Vector3(Fwrd1.x, 0, Fwrd1.z) * speed * Fmoveing;
+        Vector3 Rwrd = new Vector3(Rwrd1.x, 0, Rwrd1.z) * speed * Rmoveing;
 
 
         Vector3 ConstantMove = transform.position + Fwrd + Rwrd;
@@ -112,5 +114,15 @@ public class GeneralMovement : MonoBehaviour
             grounded = false;
         }
             
+    }
+
+    void momentHalt(){
+        if(inputC.down && haltCounter > 3){
+            haltCounter = 0;
+        }
+        if(haltCounter < 5 && !inputC.down){
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+        haltCounter++;
     }
 }

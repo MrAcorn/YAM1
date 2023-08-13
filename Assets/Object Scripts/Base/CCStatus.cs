@@ -129,4 +129,19 @@ public class CCStatus : MonoBehaviour
         return hold;
         
     }
+
+        public crowdControl applySpeed(float time, float size){
+            stats.speed += size;
+        crowdControl hold =new crowdControl(
+            (BaseCharater chara) => {
+            },
+            (BaseCharater chara) => {
+                stats.speed -= size;
+            },
+            time, "speedBoost", 1 );
+        hold.stats.Add("size", size);
+        ccEffects.Add(hold);
+        return hold;
+        
+    }
 }

@@ -21,7 +21,6 @@ public class MOD_PhasedEnemy : EffectBase
     }
     void PreDamage(){
         if(trigSource is BasicDamage){
-            print("trigger");
             phasedAbili.ApplyPhaseEffect(this);
         }
     }
