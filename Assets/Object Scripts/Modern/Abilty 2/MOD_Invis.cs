@@ -7,11 +7,13 @@ public class MOD_Invis : EffectBase
     public float time;
     private Component smokeSource;
     private int oldLayer;
+    private MeshRenderer render;
     // Start is called before the first frame update
     void OnEnable(){
         caller = GetComponent<Caller>();
         oldLayer = gameObject.layer;
-        GetComponent<MeshRenderer>().enabled = false;
+        render = GetComponent<MeshRenderer>();
+        render.enabled = false;
         gameObject.layer = 2;
         CombatStats combatS = GetComponent<CombatStats>();
         combatS.triggerList.Add(this, triggers.AllyPostDamage);
@@ -19,12 +21,12 @@ public class MOD_Invis : EffectBase
     void Update()
     {   
         if(time == 0 && smokeSource != null){
-            GetComponent<MeshRenderer>().enabled = false;
+            render.enabled = false;
             gameObject.layer = 2;
         }
         else{
             time -= Time.deltaTime;
-            GetComponent<MeshRenderer>().enabled = false;
+            render.enabled = false;
             gameObject.layer = 2;
 
             if(time < 0){
@@ -52,7 +54,7 @@ public class MOD_Invis : EffectBase
     }
     public void CleanDeath(){
         gameObject.layer = oldLayer;
-        GetComponent<MeshRenderer>().enabled = true;
+        render.enabled = true;
         Destroy(this);
     }
 }

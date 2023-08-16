@@ -48,7 +48,7 @@ public class MOD_SwordBlock : InputableClass
         thisBullet.SB = this;
     }
     private void swordDashing(){
-        transform.position = Vector3.Lerp(castPosition, targetPosition, time/castTime);
+        transform.position = Vector3.Lerp(castPosition, targetPosition + (Vector3.up*0.6f), time/castTime);
         time += Time.deltaTime;
         if(time < castTime) Invoke("swordDashing",0);
         else

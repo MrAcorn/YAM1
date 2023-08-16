@@ -73,7 +73,7 @@ public class ElementalManager : MonoBehaviour
         else{
             WaterMetalEffect effect = gameObject.GetComponent<WaterMetalEffect>();
             effect.source = elementQueueName[1];
-            effect.time = 3;
+            effect.time = 5;
         }
         
 
@@ -88,7 +88,7 @@ public class ElementalManager : MonoBehaviour
 
     }
 
-        private void MetalMetal(){
+    private void MetalMetal(){
         caller.Call(this.ToString(), "MetalMetal Reaction activated!", 3);
         if(ccStatus != null){
             ccStatus.applyStun(3,true);

@@ -269,6 +269,7 @@ MonoBehaviour:
   neutral: 1
   terrain: 0
   bullet: 0
+  targetable: 1
   others: []
 --- !u!114 &2136115264562389100
 MonoBehaviour:
@@ -351,11 +352,8 @@ MonoBehaviour:
   cooldown: 0
   setCooldown: 2
   input: 0
-  smiteBolt: {fileID: 0}
   RangeObjPreFab: {fileID: 8219810753879474675, guid: 12b69022469593747bc28fe993e1a805, type: 3}
   range: 1
-  inRange: []
-  rangeSphere: {fileID: 0}
 --- !u!1 &1977250105951199488
 GameObject:
   m_ObjectHideFlags: 0

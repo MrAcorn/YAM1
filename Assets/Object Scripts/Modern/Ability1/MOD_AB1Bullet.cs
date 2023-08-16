@@ -12,13 +12,14 @@ public class MOD_AB1Bullet : BasicDamageBullet
     {
         base.OnEnable();
         castPos = transform.position;
-        StartCoroutine(MoveAtoB());
+        
         
 
     }
     private void Start()
     {
         StartCoroutine(rangeCheck());
+        StartCoroutine(MoveAtoB());
     }
     IEnumerator MoveAtoB()
     {
@@ -31,7 +32,7 @@ public class MOD_AB1Bullet : BasicDamageBullet
         
         while (true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, (transform.TransformDirection(Vector3.forward) + transform.position), movSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, transform.TransformDirection(Vector3.forward) + transform.position, movSpeed * Time.deltaTime);
             yield return null;
         }
         

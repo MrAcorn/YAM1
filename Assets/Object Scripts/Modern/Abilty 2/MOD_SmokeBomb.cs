@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MOD_SmokeBomb : BasicDamageBullet
 {
+    private MOD_Invis invisEff;
     // Start is called before the first frame update
         void Update()
     {
@@ -23,8 +24,9 @@ public class MOD_SmokeBomb : BasicDamageBullet
             damageInstance.AssginDamage(bulDamage, 0, origName);
             ColiReport(other.gameObject);
         }
-        if(other.gameObject == origName && !other.gameObject.GetComponent<MOD_Invis>()){
-            MOD_Invis invisEff = other.gameObject.AddComponent<MOD_Invis>();
+        //if(other.gameObject == origName && !other.gameObject.GetComponent<MOD_Invis>()){
+        if(other.gameObject == origName){ 
+            invisEff = other.gameObject.AddComponent<MOD_Invis>();
             invisEff.targetCStats = other.gameObject.GetComponent<CombatStats>();
             invisEff.source = origName;
             invisEff.Allignment = 1;
@@ -34,13 +36,13 @@ public class MOD_SmokeBomb : BasicDamageBullet
     }
     void OnTriggerExit(Collider other){
         if(other.gameObject == origName && other.gameObject.GetComponent<MOD_Invis>()){
-            other.gameObject.GetComponent<MOD_Invis>().CleanDeath();
+            invisEff.CleanDeath();
         }
     }
     protected override void Death(){
         if(lifeTime < 0){
-            if(origName.GetComponent<MOD_Invis>()){
-                origName.GetComponent<MOD_Invis>().CleanDeath();
+            if(invisEff){
+                invisEff.CleanDeath();
             }
             Destroy(gameObject);
         }

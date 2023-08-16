@@ -116,7 +116,7 @@ MonoBehaviour:
   npc: 0
   neutral: 0
   terrain: 0
-  bullet: 0
+  bullet: 1
   targetable: 0
   others: []
 --- !u!114 &5463327042311621176
@@ -152,3 +152,5 @@ MonoBehaviour:
   bulElement: 0
   activeFor: 3
   time: 0
+  phased: {fileID: 0}
+  SB: {fileID: 0}

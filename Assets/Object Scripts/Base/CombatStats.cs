@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum triggers{
-    AllyPreDamage, AllyPostDamage, EnemyPreDamage, EnemyPostDamage
+    AllyPreDamage, AllyPostDamage, EnemyPreDamage, EnemyPostDamage, PreHeal
 }
 public class CombatStats : MonoBehaviour
 {
@@ -44,6 +44,14 @@ public class CombatStats : MonoBehaviour
         if(timer > 4)
         {
             inCombat = false;
+            if(triggerList.Count > 0){
+                foreach(var effect in triggerList){
+                    if(effect.Key == null){
+                        triggerList.Remove(effect.Key);
+                        break;
+                    }
+                }
+            }
         }
     }
 

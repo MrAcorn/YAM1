@@ -29,6 +29,8 @@ GameObject:
   - component: {fileID: 1245905531187243566}
   - component: {fileID: 2445794803379443374}
   - component: {fileID: 6925512192224387771}
+  - component: {fileID: 2139547615}
+  - component: {fileID: 2139547616}
   m_Layer: 0
   m_Name: Modernist
   m_TagString: Player
@@ -307,6 +309,7 @@ MonoBehaviour:
   grounded: 0
   currentHeight: 0
   reltiveGround: 0
+  haltCounter: 0
 --- !u!114 &2952535352520057913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +412,7 @@ MonoBehaviour:
   neutral: 0
   terrain: 0
   bullet: 0
+  targetable: 1
   others: []
 --- !u!114 &2952535352520058054
 MonoBehaviour:
@@ -453,6 +457,7 @@ MonoBehaviour:
   ccStatus: {fileID: 0}
   rb: {fileID: 0}
   movement: {fileID: 0}
+  moving: 0
 --- !u!114 &1245905531187243566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,11 +509,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castable: 0
   cooldown: 0
-  setCooldown: 1
+  setCooldown: 0.2
   input: 9
   aimR: {fileID: 2952535354397307571}
-  aimOffset: 0
+  aimOffset: 1
   bullet: {fileID: 6827266809262165081, guid: 7eee185b813f727438b36892af099461, type: 3}
+  ammo: 0
+  magSize: 8
+  reloadSpeed: 3
+--- !u!114 &2139547615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952535352520057899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad056ca3482efe4e8eba26d8360dd43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castable: 0
+  cooldown: 0
+  setCooldown: 1
+  input: 12
+  RangeObjPreFab: {fileID: 8219810753879474675, guid: 2df2baf841ac81e44a1b5f1a6c68efac, type: 3}
+  range: 10
+  aimR: {fileID: 2952535354397307571}
+  bullet: {fileID: 8219810753879474675, guid: ff72d0cabce268e49873f494e482f5b9, type: 3}
+  lockedOn: {fileID: 0}
+  inivsTime: 7
+--- !u!114 &2139547616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952535352520057899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc85033fbb1ca1429ed6537c38b2700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castable: 1
+  cooldown: 0
+  setCooldown: 4
+  input: 13
+  aimR: {fileID: 2952535354397307571}
+  swordBullet: {fileID: 5463327042311621177, guid: 2279fd718206c4f46a6a0c8dc2d761aa, type: 3}
+  swordCastTime: 0
+  castPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  range: 20
+  castTime: 0.25
+  hit: 0
 --- !u!1 &2952535352933880570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,6 +1385,7 @@ MonoBehaviour:
   neutral: 0
   terrain: 0
   bullet: 0
+  targetable: 0
   others: []
 --- !u!1 &2952535354057503567
 GameObject:
@@ -1506,6 +1561,7 @@ MonoBehaviour:
   neutral: 0
   terrain: 0
   bullet: 0
+  targetable: 0
   others: []
 --- !u!1 &2952535354397307574
 GameObject:
@@ -1647,6 +1703,7 @@ MonoBehaviour:
   testValue: {fileID: 0}
   testFloat: 0
   cam: {fileID: 2952535354397307569}
+  lockedOn: []
 --- !u!114 &2952535354397307580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,6 +1738,7 @@ MonoBehaviour:
   neutral: 0
   terrain: 0
   bullet: 0
+  targetable: 0
   others: []
 --- !u!1 &5975706110897018060
 GameObject:

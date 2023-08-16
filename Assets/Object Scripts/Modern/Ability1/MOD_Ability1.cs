@@ -21,7 +21,8 @@ public class MOD_Ability1 : InputableClass
             ammo--;
             caller.Call(gameObject.name, "ABA1 - Dummy", 3);
 
-            MOD_AB1Bullet thisBullet = Instantiate(bullet, hold, Quaternion.identity).GetComponent<MOD_AB1Bullet>();
+            //MOD_AB1Bullet thisBullet = Instantiate(bullet, hold, Quaternion.identity).GetComponent<MOD_AB1Bullet>();
+            MOD_AB1Bullet thisBullet = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<MOD_AB1Bullet>();
             thisBullet.setDir(aimR.aimPoint);
             thisBullet.dmgStat(stats.attack[0], 0);
             thisBullet.origName = this.gameObject;

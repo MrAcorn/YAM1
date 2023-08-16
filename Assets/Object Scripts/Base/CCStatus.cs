@@ -50,7 +50,7 @@ public class CCStatus : MonoBehaviour
     }
     public void ClenseCC(string status){
         for(int i = 0; i < ccEffects.Count; i++){
-        if(ccEffects[i].givenName == status){
+        if(ccEffects[i].name == status){
             ccEffects[i].clearCC(character);
             ccEffects.Remove(ccEffects[i]); i--;
         }    
@@ -66,15 +66,15 @@ public class CCStatus : MonoBehaviour
     }
     public class crowdControl{
         public int alainment = 0;
-        public string givenName;
+        public string name;
         public Dictionary<string,float> stats = new Dictionary<string,float>(){};
         public Action<BaseCharater> applyCC;
         public Action<BaseCharater> clearCC;
-        public crowdControl( Action<BaseCharater> codeApplyCC, Action<BaseCharater> codeClearCC, float time, string name, int helpful ){
+        public crowdControl( Action<BaseCharater> codeApplyCC, Action<BaseCharater> codeClearCC, float time, string givenName, int helpful ){
             applyCC = codeApplyCC;
             clearCC = codeClearCC;
             stats.Add("timer", time);
-            givenName = name;
+            name = givenName;
             alainment = helpful;
         }
 
@@ -130,7 +130,7 @@ public class CCStatus : MonoBehaviour
         
     }
 
-        public crowdControl applySpeed(float time, float size){
+    public crowdControl applySpeed(float time, float size){
             stats.speed += size;
         crowdControl hold =new crowdControl(
             (BaseCharater chara) => {

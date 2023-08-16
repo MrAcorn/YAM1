@@ -103,6 +103,7 @@ MonoBehaviour:
   neutral: 0
   terrain: 0
   bullet: 1
+  targetable: 0
   others: []
 --- !u!114 &-6314815776661842452
 MonoBehaviour:
